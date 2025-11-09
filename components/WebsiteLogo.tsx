@@ -37,7 +37,6 @@ const WebsiteLogo = ({
   }, [imgSrc, isLoading]);
 
   const handleError = () => {
-    const nextIndex = fallbackIndex + 1;
     setHasError(true);
     setIsLoading(false);
   };

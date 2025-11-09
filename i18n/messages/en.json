@@ -39,5 +39,9 @@
   "PrivacyPolicy": {
     "title": "Privacy Policy",
     "description": "Privacy Policy"
+  },
+  "About": {
+    "title": "About",
+    "description": "About us"
   }
 }
