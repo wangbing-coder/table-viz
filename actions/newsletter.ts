@@ -4,11 +4,17 @@ import { Redis } from '@upstash/redis';
 import { headers } from 'next/headers';
 import { Resend } from 'resend';
 
-// initialize resend
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Resend Audience ID
 const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID!;
+
+// Lazy initialize resend to avoid build-time errors
+function getResend() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error('RESEND_API_KEY is not configured');
+  }
+  return new Resend(apiKey);
+}
 
 // initialize Redis
 const redis = new Redis({
@@ -49,6 +55,8 @@ export async function subscribeToNewsletter(email: string) {
     if (!isValid) {
       throw new Error(error || 'Invalid email address');
     }
+
+    const resend = getResend();
 
     // Check if already subscribed
     // const list = await resend.contacts.list({ audienceId: AUDIENCE_ID });
@@ -102,6 +110,8 @@ export async function unsubscribeFromNewsletter(token: string) {
     if (!isValid) {
       throw new Error(error || 'Invalid email address');
     }
+
+    const resend = getResend();
 
     // Check if subscribed
     const list = await resend.contacts.list({ audienceId: AUDIENCE_ID });

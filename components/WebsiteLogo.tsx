@@ -16,20 +16,9 @@ const WebsiteLogo = ({
   timeout = 1000, // 1 second
 }: IProps) => {
   const domain = getDomain(url);
-  const [imgSrc, setImgSrc] = useState(`https://${domain}/logo.svg`);
-  const [fallbackIndex, setFallbackIndex] = useState(0);
+  const [imgSrc, setImgSrc] = useState(`https://${domain}/logo.png`);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-
-  const fallbackSources = [
-    `https://${domain}/logo.svg`,
-    `https://${domain}/logo.png`,
-    `https://${domain}/apple-touch-icon.png`,
-    `https://${domain}/apple-touch-icon-precomposed.png`,
-    `https://www.google.com/s2/favicons?domain=${domain}&sz=64`,
-    `https://icons.duckduckgo.com/ip3/${domain}.ico`,
-    `https://${domain}/favicon.ico`,
-  ];
 
   useEffect(() => {
     let timeoutId: any;
@@ -49,14 +38,8 @@ const WebsiteLogo = ({
 
   const handleError = () => {
     const nextIndex = fallbackIndex + 1;
-    if (nextIndex < fallbackSources.length) {
-      setFallbackIndex(nextIndex);
-      setImgSrc(fallbackSources[nextIndex]);
-      setIsLoading(true);
-    } else {
-      setHasError(true);
-      setIsLoading(false);
-    }
+    setHasError(true);
+    setIsLoading(false);
   };
 
   const handleLoad = () => {
@@ -83,9 +66,8 @@ const WebsiteLogo = ({
         height={size}
         onError={handleError}
         onLoad={handleLoad}
-        className={`inline-block transition-opacity duration-300 ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
+        className={`inline-block transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"
+          }`}
         style={{
           objectFit: "contain",
           display: hasError ? "none" : "inline-block",

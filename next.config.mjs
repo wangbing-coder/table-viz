@@ -23,6 +23,8 @@ const nextConfig = {
           }
         : false,
   },
+  // Fix for @react-email/render prettier dependency
+  serverExternalPackages: ['prettier'],
 };
 
 export default withNextIntl(nextConfig);

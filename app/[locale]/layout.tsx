@@ -84,7 +84,7 @@ export default async function LocaleLayout({
             {messages.LanguageDetection && <LanguageDetectionAlert />}
             {messages.Header && <Header />}
 
-            <main className="flex-1 flex flex-col items-center">
+            <main className="flex-1">
               {children}
             </main>
 

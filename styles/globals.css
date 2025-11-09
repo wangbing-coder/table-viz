@@ -4,6 +4,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll;
+  /* Always show scrollbar to prevent layout shift */
 }
 
 @layer base {
@@ -17,6 +19,7 @@ html {
 }
 
 @layer base {
+
   /* Change global styles at: https://tweakcn.com/editor/theme */
   :root {
     --background: 223.8136 -172.5242% 100.0000%;
@@ -66,7 +69,7 @@ html {
     --tracking-normal: 0em;
     --spacing: 0.25rem;
   }
-  
+
   .dark {
     --background: 223.8136 0.0000% 3.9388%;
     --foreground: 223.8136 0.0004% 98.0256%;

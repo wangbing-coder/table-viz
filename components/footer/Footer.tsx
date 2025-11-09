@@ -1,5 +1,3 @@
-import BuiltWithButton from "@/components/BuiltWithButton";
-import Badges from "@/components/footer/Badges";
 import { Newsletter } from "@/components/footer/Newsletter";
 import { TwitterX } from "@/components/social-icons/icons";
 import { siteConfig } from "@/config/site";
@@ -106,8 +104,6 @@ export default async function Footer() {
                     </Link>
                   )}
                 </div>
-
-                <BuiltWithButton />
               </div>
             </div>
 
@@ -182,8 +178,6 @@ export default async function Footer() {
             </div>
           </div>
         </div>
-
-        <Badges />
       </footer>
     </div>
   );
